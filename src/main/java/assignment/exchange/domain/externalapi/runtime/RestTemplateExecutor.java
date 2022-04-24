@@ -1,7 +1,6 @@
 package assignment.exchange.domain.externalapi.runtime;
 
 
-import assignment.exchange.domain.externalapi.dto.ExternalApiResponse;
 import assignment.exchange.domain.externalapi.service.ExternalApiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,7 @@ public class RestTemplateExecutor implements Runnable {
         if (!thread.isAlive()) {
             thread.start();
         }
-        logger.warn("start Executor");
+        logger.info("start Executor");
     }
 
     public void stopExecutor() {
@@ -33,17 +32,17 @@ public class RestTemplateExecutor implements Runnable {
     @Override
     public void run() {
 
-        logger.warn("RestTemplate Executor run");
+        logger.info("RestTemplate Executor run");
         Thread currentThrad = Thread.currentThread();
 
         while (currentThrad == thread) {
             try {
                 ExternalApiService service = new ExternalApiService();
-                ExternalApiResponse response = service.getRateInfo();
+                Boolean isSuccess = service.currencyLayerCaching();
 
-                logger.warn("RestTemplate thread get result is success : " + response.getSuccess());
+                logger.info("RestTemplate thread get result is success : " + isSuccess);
 
-                Thread.sleep(1000 * 10);
+                Thread.sleep(1000 * 60 * 60);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
