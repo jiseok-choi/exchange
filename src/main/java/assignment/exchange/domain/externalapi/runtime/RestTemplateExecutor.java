@@ -1,6 +1,8 @@
 package assignment.exchange.domain.externalapi.runtime;
 
 
+import assignment.exchange.domain.externalapi.dto.ExternalApiResponse;
+import assignment.exchange.domain.externalapi.service.ExternalApiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +38,10 @@ public class RestTemplateExecutor implements Runnable {
 
         while (currentThrad == thread) {
             try {
+                ExternalApiService service = new ExternalApiService();
+                ExternalApiResponse response = service.getRateInfo();
+
+                logger.warn("RestTemplate thread get result is success : " + response.getSuccess());
 
                 Thread.sleep(1000 * 10);
 
