@@ -17,8 +17,6 @@ public class CurrencyRateService {
         try {
             CountryName.validate(country);
             response.setRate(CurrencyRate.getExchangeRate(country));
-
-
         } catch (ExchangeException e) {
             response.setSuccess(false);
             response.setMessage(e.getMessage());

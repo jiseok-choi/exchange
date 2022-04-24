@@ -3,13 +3,17 @@ package assignment.exchange.domain.externalapi.service;
 import assignment.exchange.domain.countryrate.domain.CurrencyRate;
 import assignment.exchange.domain.externalapi.config.RestTemplateClient;
 import assignment.exchange.domain.externalapi.dto.ExternalApiResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class ExternalApiService {
 
-    public static final String API_URL = "http://www.apilayer.net/api/live?access_key=ee50cd7cc73c9b7a7bb3d9617cfb6b9c";
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public static final String API_URL = "http://api.currencylayer.com/live?access_key=6dddebe43e0280bc5fe1197eac07db48";
 
     private static String USDKRW = "USDKRW";
     private static String USDJPY = "USDJPY";
@@ -19,8 +23,14 @@ public class ExternalApiService {
      * 환율 정보 조회
      */
     public ExternalApiResponse getRateInfo() {
-        return RestTemplateClient.restTemplate()
-                .getForObject(API_URL, ExternalApiResponse.class);
+        ExternalApiResponse response = new ExternalApiResponse();
+        try {
+            response = RestTemplateClient.restTemplate()
+                    .getForObject(API_URL, ExternalApiResponse.class);
+        } catch (Exception e) {
+            logger.error(e.toString());
+        }
+        return response;
     }
 
     public Boolean currencyLayerCaching() {

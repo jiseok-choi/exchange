@@ -30,6 +30,6 @@ public class CurrencyRate {
         if (exchange == null) {
             throw new ExchangeException("Unable to get exchange rate information.");
         }
-        return exchange;
+        return Math.round(exchange * 100) / 100.0;
     }
 }
