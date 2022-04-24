@@ -1,21 +1,6 @@
-<!--<template>-->
-
-<!--  <v-container>-->
-<!--    <h1>환율 계산</h1>-->
-<!--    <br/>-->
-<!--    <row>-->
-
-<!--    </row>-->
-<!--    <h2>송금국가: 미국(USD)</h2>-->
-<!--    <h2>수취국가:</h2>-->
-<!--  </v-container>-->
-<!--</template>-->
 
 <template>
-  <table style="table-layout: fixed; width: 100%">
-    <colgroup>
-      <col style="width: 100%">
-    </colgroup>
+  <table style="table-layout: fixed; text-align: center; width: 100%">
     <thead>
     <tr>
       <th>
@@ -32,7 +17,7 @@
       <td>
         <h2>
           수취국가:
-          <select v-model="this.selected">
+          <select v-model="this.country" @change="countryChange()">
             <option value="krw">한국(KRW)</option>
             <option value="jpy">일본(JPY)</option>
             <option value="php">필리핀(PHP)</option>
@@ -44,17 +29,22 @@
     </tr>
     <tr>
       <td>
-        <h2>환율:</h2>
+        <h2>환율: {{ this.rateText }} {{ this.country.toUpperCase() }}/USD</h2>
       </td>
     </tr>
     <tr>
       <td>
-        <h2>송금액: </h2>
+        <h2>송금액: <input v-model="this.remittanceAmount"/> USD</h2>
       </td>
     </tr>
     <tr>
       <td>
-        <button v-on:click="getRateInfo">Submit</button>
+        <button v-on:click="calculator">Submit</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h1>{{ this.message }}</h1>
       </td>
     </tr>
     </tbody>
@@ -69,7 +59,11 @@ export default {
 
   data() {
     return {
-      selected: 'krw'
+      country: 'krw',
+      rate: 1,
+      rateText: '',
+      remittanceAmount: 0,
+      message: ''
     }
   },
 
@@ -80,14 +74,42 @@ export default {
   methods: {
 
     init() {
-      console.log("mounted!!", this.selected);
+      this.getRateInfo();
+
     },
 
     getRateInfo() {
-      Axios.get('/localhost:8090/exchange')
+      Axios.get('/exchange/' + this.country)
         .then(res => {
-          console.log(res);
+          if (res.data.success) {
+            this.rate = res.data.rate
+            this.rateText = this.toAmountString(res.data.rate)
+          } else {
+            this.message = res.data.message
+          }
         })
+    },
+
+    toAmountString(val) {
+      let str = val.toFixed(2).toString().split(".");
+      str[0] = str[0].replace(/[^-\\.0-9]/g,'').replace(/(.)(?=(\d{3})+$)/g,'$1,');
+      return str.join('.');
+    },
+
+    countryChange() {
+      this.getRateInfo();
+    },
+
+    calculator() {
+      if (this.remittanceAmount > 10000 || this.remittanceAmount < 0) {
+        alert("송금액이 바르지 않습니다")
+        return
+      }
+
+      let amount = this.remittanceAmount * this.rate;
+      let countryText = ' ' + this.country.toUpperCase() + ' 입니다.'
+
+      this.message = '수취금액은 ' + this.toAmountString(amount) + countryText
     }
   }
 
