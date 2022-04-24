@@ -34,7 +34,7 @@
     </tr>
     <tr>
       <td>
-        <h2>송금액: <input v-model="this.remittanceAmount"/> USD</h2>
+        <h2>송금액: <input type="number" v-model="this.remittanceAmount"/> USD</h2>
       </td>
     </tr>
     <tr>
