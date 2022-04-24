@@ -19,14 +19,14 @@ public class CustomServletContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        logger.warn("context Initialized");
+        logger.info("context Initialized");
         restTemplateExecutor = new RestTemplateExecutor();
         restTemplateExecutor.startExecutor();
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        logger.warn("context Destroyed");
+        logger.info("context Destroyed");
         restTemplateExecutor.stopExecutor();
     }
 
