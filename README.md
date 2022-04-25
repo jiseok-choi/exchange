@@ -11,6 +11,12 @@
 - jdk 11
 
 
+## 화면
+
+![image](https://user-images.githubusercontent.com/53139084/165005188-7925700a-da2d-431d-8047-6977898fec50.png)
+
+
+
 
 ## 프로젝트 구조
 
