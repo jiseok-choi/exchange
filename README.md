@@ -15,8 +15,9 @@
 ## 프로젝트 구조
 
 
+![image](https://user-images.githubusercontent.com/53139084/165004827-4385be4c-aeaf-47aa-a80a-3f6c8fb7045b.png)
 
-![](/Users/jiseok/Library/Application%20Support/marktext/images/2022-04-25-09-36-26-image.png)
+
 
 - 프로젝트가 실행되었을때 외부 API 를 통해 환율정보를 가져옵니다.
   
