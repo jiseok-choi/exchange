@@ -1,7 +1,7 @@
-package assignment.exchange.domain.countryrate.controller;
+package assignment.exchange.domain.currencyrate.controller;
 
-import assignment.exchange.domain.countryrate.dto.ExchangeRateResponse;
-import assignment.exchange.domain.countryrate.service.CurrencyRateService;
+import assignment.exchange.domain.currencyrate.dto.CurrencyRateResponse;
+import assignment.exchange.domain.currencyrate.service.CurrencyRateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class CurrencyRateController {
     CurrencyRateService service;
 
     @GetMapping("/exchange/{country}")
-    public ExchangeRateResponse exchange(@PathVariable String country) {
+    public CurrencyRateResponse exchange(@PathVariable String country) {
         logger.debug("request exchange rate country: " + country);
         return service.getCurrencyRateInfo(country);
     }

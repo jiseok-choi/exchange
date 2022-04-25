@@ -1,6 +1,6 @@
 package assignment.exchange.domain.externalapi.service;
 
-import assignment.exchange.domain.countryrate.domain.CurrencyRate;
+import assignment.exchange.domain.currencyrate.domain.CurrencyRate;
 import assignment.exchange.domain.externalapi.config.RestTemplateClient;
 import assignment.exchange.domain.externalapi.dto.ExternalApiResponse;
 import org.slf4j.Logger;

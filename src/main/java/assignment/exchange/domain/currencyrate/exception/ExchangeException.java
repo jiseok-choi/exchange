@@ -1,4 +1,4 @@
-package assignment.exchange.domain.countryrate.exception;
+package assignment.exchange.domain.currencyrate.exception;
 
 public class ExchangeException extends RuntimeException {
 

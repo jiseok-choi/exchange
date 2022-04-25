@@ -1,6 +1,6 @@
-package assignment.exchange.domain.countryrate.domain;
+package assignment.exchange.domain.currencyrate.domain;
 
-import assignment.exchange.domain.countryrate.exception.ExchangeException;
+import assignment.exchange.domain.currencyrate.exception.ExchangeException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

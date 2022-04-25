@@ -1,15 +1,15 @@
-package assignment.exchange.domain.countryrate.dto;
+package assignment.exchange.domain.currencyrate.dto;
 
-public class ExchangeRateResponse {
+public class CurrencyRateResponse {
 
     private Boolean success;
     private Double rate;
     private String message;
 
-    public ExchangeRateResponse() {
+    public CurrencyRateResponse() {
     }
 
-    public ExchangeRateResponse(Boolean success, Double rate, String message) {
+    public CurrencyRateResponse(Boolean success, Double rate, String message) {
         this.success = success;
         this.rate = rate;
         this.message = message;

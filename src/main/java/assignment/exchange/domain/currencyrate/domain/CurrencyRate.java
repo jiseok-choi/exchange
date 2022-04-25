@@ -1,10 +1,10 @@
-package assignment.exchange.domain.countryrate.domain;
+package assignment.exchange.domain.currencyrate.domain;
 
-import assignment.exchange.domain.countryrate.exception.ExchangeException;
+import assignment.exchange.domain.currencyrate.exception.ExchangeException;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import static assignment.exchange.domain.countryrate.domain.CountryName.*;
+import static assignment.exchange.domain.currencyrate.domain.CountryName.*;
 
 public class CurrencyRate {
 
